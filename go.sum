@@ -1,5 +1,7 @@
 github.com/SINTEF-Infosec/demokit v0.0.0-20210818163019-de31692cfc75 h1:kYSqMA9jmUx9870Jy/oXXKj0lUHGY1rnQtxtoRh4/U0=
 github.com/SINTEF-Infosec/demokit v0.0.0-20210818163019-de31692cfc75/go.mod h1:+VtrnBbZFRGVvVOpngK8O1h1J7FeEE3PH8wkvqW2pV4=
+github.com/SINTEF-Infosec/demokit v0.0.0-20210819150848-13c235a23b6f h1:kcFNlrF2KDDOVl3XA/AGHqrFQlzp8DxWPwXK2mLU+R0=
+github.com/SINTEF-Infosec/demokit v0.0.0-20210819150848-13c235a23b6f/go.mod h1:+VtrnBbZFRGVvVOpngK8O1h1J7FeEE3PH8wkvqW2pV4=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/goombaio/namegenerator v0.0.0-20181006234301-989e774b106e h1:XmA6L9IPRdUr28a+SK/oMchGgQy159wvzXA5tJ7l+40=

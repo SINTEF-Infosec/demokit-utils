@@ -26,6 +26,7 @@ func main() {
 	eventName := sendCmd.String("event", "", "Event name")
 	payload := sendCmd.String("payload", "", "Event payload")
 	emitter := sendCmd.String("emitter", "cli", "Emitter of the event, default \"cli\"")
+	receiver := sendCmd.String("receiver", "*", "Receiver of the event, default \"*\"")
 
 	if len(os.Args) < 2 {
 		usage()
@@ -36,8 +37,8 @@ func main() {
 	network := core.NewRabbitMQEventNetwork(core.ConnexionDetails{
 		Username: "guest",
 		Password: "guest",
-		Host: "localhost",
-		Port: "5672",
+		Host:     "localhost",
+		Port:     "5672",
 	}, logrus.WithField("name", "cli"))
 
 	switch os.Args[1] {
@@ -61,10 +62,12 @@ func main() {
 			os.Exit(1)
 		}
 		event := &core.Event{
-			Name: *eventName,
-			Emitter: *emitter,
-			Payload: *payload,
+			Name:     *eventName,
+			Emitter:  *emitter,
+			Payload:  *payload,
+			Receiver: *receiver,
 		}
+		logrus.Debugf("%v", event)
 		network.BroadcastEvent(event)
 	default:
 		usage()
@@ -73,5 +76,5 @@ func main() {
 }
 
 func handleEvent(event *core.Event) {
-	fmt.Printf("EVENT NAME: %s\t\tEmitter: %s\t\tPayload: %s\n", event.Name, event.Emitter, event.Payload)
+	fmt.Printf("EVENT NAME: %s\t\tEmitter: %s\t\tReceiver: %s\t\tPayload: %s\n", event.Name, event.Emitter, event.Receiver, event.Payload)
 }
