@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 )
 
 func usage() {
@@ -76,5 +77,6 @@ func main() {
 }
 
 func handleEvent(event *core.Event) {
-	fmt.Printf("EVENT NAME: %s\t\tEmitter: %s\t\tReceiver: %s\t\tPayload: %s\n", event.Name, event.Emitter, event.Receiver, event.Payload)
+	currentTime := time.Now()
+	fmt.Printf("%s - EVENT NAME: %-15s\tEmitter: %-20s\tReceiver: %-20s\tPayload: %-40s\n", currentTime.Format("2006.01.02 15:04:05"), event.Name, event.Emitter, event.Receiver, event.Payload)
 }
