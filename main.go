@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/SINTEF-Infosec/demokit/core"
 	"github.com/sirupsen/logrus"
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -36,10 +37,10 @@ func main() {
 
 	// Connecting to the network
 	network := core.NewRabbitMQEventNetwork(core.ConnexionDetails{
-		Username: "guest",
-		Password: "guest",
-		Host:     "localhost",
-		Port:     "5672",
+		Username: getFromEnvOrFail("RABBIT_MQ_USERNAME"),
+		Password: getFromEnvOrFail("RABBIT_MQ_PASSWORD"),
+		Host:     getFromEnvOrFail("RABBIT_MQ_HOST"),
+		Port:     getFromEnvOrFail("RABBIT_MQ_PORT"),
 	}, logrus.WithField("name", "cli"))
 
 	switch os.Args[1] {
@@ -74,6 +75,14 @@ func main() {
 		usage()
 		os.Exit(1)
 	}
+}
+
+func getFromEnvOrFail(varName string) string {
+	envVar := os.Getenv(varName)
+	if envVar == "" {
+		log.Fatalf("environment variable not set: %s", varName)
+	}
+	return envVar
 }
 
 func handleEvent(event *core.Event) {
